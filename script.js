@@ -38,7 +38,6 @@ function gerarChamado() {
 
     const trocaEndereco = document.getElementById('trocaEndereco').checked;
 
-    // Atualizando a mensagem de prazo para refletir o que foi selecionado
     const prazoTexto = `CLIENTE CIENTE DO PRAZO MÁXIMO DE ${prazo} ÚTEIS E CUSTOS DA VISITA TÉCNICA DE R$50,00 A HORA TÉCNICA E MATERIAIS SE NECESSÁRIO`;
 
     let chamado = `
@@ -55,7 +54,6 @@ POTENCIA: ${potencia} _____
 DESCRIÇÃO: ${descricao} _____
 `;
 
-    // Remover a mensagem de prazo se a opção de troca de endereço for selecionada
     if (!trocaEndereco) {
         chamado += `____${prazoTexto}____\n`;
     }
@@ -74,10 +72,9 @@ DA LEI 8078
     const resultadoElement = document.getElementById('resultado');
     resultadoElement.textContent = chamado;
 
-    // Copiar para a área de transferência sem alert
+    resultadoElement.style.display = "block";
     navigator.clipboard.writeText(chamado);
 
-    // Confirmação visual de que o chamado foi copiado com sucesso/falhou
     navigator.clipboard.writeText(chamado).then(() => {
         alert('Chamado gerado e copiado para a área de transferência!');
     }, () => {
@@ -88,4 +85,5 @@ DA LEI 8078
 function limparFormulario() {
     document.getElementById('chamadoForm').reset();
     document.getElementById('resultado').textContent = '';
+    document.getElementById('resultado').style.display = "none";
 }
