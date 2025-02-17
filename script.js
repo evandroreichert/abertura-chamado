@@ -55,7 +55,7 @@ PERIODO: ${periodo} _____
 
 ID: ${id} _____
 TIPO DE PROCESSO: ${processo}
-EQUIPAMENTO PARA RETIRAR DO ALMOXARIFADO: ${comodato}
+EQUIPAMENTO EM COMODATO: ${comodato}
 
 CA 1: ${ca} _____ - ${metragem1} _____
 CA 2: ${ca2} _____ - ${metragem2} _____
