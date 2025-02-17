@@ -8,79 +8,116 @@
     <title>Abertura de Chamado</title>
 </head>
 <body>
-
-<div class="theme-switch">
+    <div class="theme-switch">
         <label class="switch">
             <input type="checkbox" id="themeToggle">
             <span class="slider round"></span>
         </label>
         <span id="themeLabel">Dark Mode</span>
-</div>
+    </div>
     
-<div class="logo">
-    <img id="logo" src="/assets/dark-logo.png" alt="Logo">
-</div>
-
-
-<h1>ABERTURA DE CHAMADO ⚡</h1>
-
-<form id="chamadoForm">
-    <label for="periodo">PERÍODO:</label>
-    <select id="periodo" name="periodo">
-        <option value="MANHÃ">MANHÃ</option>
-        <option value="TARDE">TARDE</option>
-        <option value="INDIFERENTE">INDIFERENTE</option>
-    </select>
-
-    <label for="ca">CA:</label>
-    <input type="text" id="ca" name="ca" required>
-
-    <label for="id">ID:</label>
-    <input type="text" id="id" name="id" required>
-
-    <label for="pppoe">PPPOE:</label>
-    <input type="text" id="pppoe" name="pppoe" required>
-
-    <label for="nome_cliente">NOME CLIENTE:</label>
-    <input type="text" id="nome_cliente" name="nome_cliente" required>
-
-    <label for="endereco">ENDEREÇO:</label>
-    <input type="text" id="endereco" name="endereco" required>
-
-    <label for="referencia">PONTO DE REFERÊNCIA:</label>
-    <input type="text" id="referencia" name="referencia" required>
-
-    <label for="telefone">TELEFONE PARA CONTATO:</label>
-    <input type="text" id="telefone" name="telefone" pattern="\d{10,11}" title="Insira um número de telefone válido com 10 ou 11 dígitos." required>
-
-    <label for="potencia">POTÊNCIA:</label>
-    <input type="text" id="potencia" name="potencia" required>
-
-    <label for="descricao">DESCRIÇÃO:</label>
-    <textarea id="descricao" name="descricao" rows="4"></textarea>
-
-    <label for="prazo">Prazo Máximo de Atendimento:</label>
-    <select id="prazo" name="prazo">
-        <option value="48">48 horas úteis</option>
-        <option value="72">72 horas úteis</option>
-        <option value="7-15">7 a 15 dias</option>
-    </select>
-
-    <div class="checkbox-group">
-        <input type="checkbox" id="trocaEndereco" name="trocaEndereco">
-        <label for="trocaEndereco" class="custom-checkbox"></label>
-        <span>INSTALAÇÃO / TROCA DE ENDEREÇO</span>
+    <div class="logo">
+        <img id="logo" src="/assets/dark-logo.png" alt="Logo">
     </div>
 
-    <div class="button-group">
-        <button type="button" onclick="gerarChamado()">Gerar Chamado e Copiar</button>
-        <button type="button" id="resetButton" onclick="limparFormulario()">Limpar Formulário</button>
-    </div>
-</form>
+    <h1>ABERTURA DE CHAMADO ⚡</h1>
 
-<p id="resultado"></p>
+    <form id="chamadoForm">
+        <!-- Primeira linha com 2 campos -->
+        <div class="form-row form-row-2">
+            <div class="form-group">
+                <label for="periodo">PERÍODO:</label>
+                <select id="periodo" name="periodo">
+                    <option value="MANHÃ">MANHÃ</option>
+                    <option value="TARDE">TARDE</option>
+                    <option value="INDIFERENTE">INDIFERENTE</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="ca">CA:</label>
+                <input type="text" id="ca" name="ca" required>
+            </div>
+        </div>
 
-<script src="script.js"></script>
+        <!-- Segunda linha com 2 campos -->
+        <div class="form-row form-row-2">
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" required>
+            </div>
 
+            <div class="form-group">
+                <label for="pppoe">PPPOE:</label>
+                <input type="text" id="pppoe" name="pppoe" required>
+            </div>
+        </div>
+
+        <div class="form-row form-row-1">
+            <div class="form-group">
+                <label for="nome_cliente">NOME CLIENTE:</label>
+                <input type="text" id="nome_cliente" name="nome_cliente" required>
+            </div>
+        </div>
+
+        <div class="form-row form-row-1">
+            <div class="form-group">
+                <label for="endereco">ENDEREÇO:</label>
+                <input type="text" id="endereco" name="endereco" required>
+            </div>
+        </div>
+
+        <div class="form-row form-row-1">
+            <div class="form-group">
+                <label for="referencia">PONTO DE REFERÊNCIA:</label>
+                <input type="text" id="referencia" name="referencia" required>
+            </div>
+        </div>
+
+        <div class="form-row form-row-1">
+            <div class="form-group">
+                <label for="telefone">TELEFONE PARA CONTATO:</label>
+                <input type="text" id="telefone" name="telefone" pattern="\d{10,11}" title="Insira um número de telefone válido com 10 ou 11 dígitos." required>
+            </div>
+        </div>
+
+        <div class="form-row form-row-2">
+            <div class="form-group">
+                <label for="potencia">POTÊNCIA:</label>
+                <input type="text" id="potencia" name="potencia" required>
+            </div>
+
+            <div class="form-group">
+                <label for="prazo">Prazo Máximo de Atendimento:</label>
+                <select id="prazo" name="prazo">
+                    <option value="48">48 horas úteis</option>
+                    <option value="72">72 horas úteis</option>
+                    <option value="7-15">7 a 15 dias</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row form-row-1">
+            <div class="form-group">
+                <label for="descricao">DESCRIÇÃO:</label>
+                <textarea id="descricao" name="descricao" rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="trocaEndereco" name="trocaEndereco">
+            <label for="trocaEndereco" class="custom-checkbox"></label>
+            <span>INSTALAÇÃO / TROCA DE ENDEREÇO</span>
+        </div>
+
+        <div class="button-group">
+            <button type="button" onclick="gerarChamado()">Gerar Chamado e Copiar</button>
+            <button type="button" id="resetButton" onclick="limparFormulario()">Limpar Formulário</button>
+        </div>
+    </form>
+
+    <p id="resultado"></p>
+
+    <script src="script.js"></script>
 </body>
 </html>
