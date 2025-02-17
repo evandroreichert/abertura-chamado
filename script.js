@@ -25,41 +25,51 @@ function removerAcentosECaracteresEspeciais(str) {
 
 function gerarChamado() {
     const periodo = document.getElementById('periodo').value.toUpperCase();
-    const ca = removerAcentosECaracteresEspeciais(document.getElementById('ca').value.toUpperCase());
+    const fidelidade = document.getElementById('fidelidade').value.toUpperCase();
+    const processo = removerAcentosECaracteresEspeciais(document.getElementById('tipo_processo').value.toUpperCase());
+    const comodato = removerAcentosECaracteresEspeciais(document.getElementById('comodato').value.toUpperCase());
+    const plano = removerAcentosECaracteresEspeciais(document.getElementById('plano').value.toUpperCase());
+
+    const ca = removerAcentosECaracteresEspeciais(document.getElementById('cto1').value.toUpperCase());
+    const ca2 = removerAcentosECaracteresEspeciais(document.getElementById('cto2').value.toUpperCase());
+    const ca3 = removerAcentosECaracteresEspeciais(document.getElementById('cto3').value.toUpperCase());
+
+    const metragem1 = removerAcentosECaracteresEspeciais(document.getElementById('metragem1').value.toUpperCase());
+    const metragem2 = removerAcentosECaracteresEspeciais(document.getElementById('metragem2').value.toUpperCase());
+    const metragem3 = removerAcentosECaracteresEspeciais(document.getElementById('metragem3').value.toUpperCase());
+
     const id = removerAcentosECaracteresEspeciais(document.getElementById('id').value.toUpperCase());
     const pppoe = removerAcentosECaracteresEspeciais(document.getElementById('pppoe').value.toUpperCase());
     const nome_cliente = removerAcentosECaracteresEspeciais(document.getElementById('nome_cliente').value.toUpperCase());
     const endereco = removerAcentosECaracteresEspeciais(document.getElementById('endereco').value.toUpperCase());
     const referencia = removerAcentosECaracteresEspeciais(document.getElementById('referencia').value.toUpperCase());
-    const telefone = removerAcentosECaracteresEspeciais(document.getElementById('telefone').value);
-    const potencia = removerAcentosECaracteresEspeciais(document.getElementById('potencia').value.toUpperCase());
+    const telefone1 = removerAcentosECaracteresEspeciais(document.getElementById('telefone').value);
+    const telefone2 = removerAcentosECaracteresEspeciais(document.getElementById('telefone2').value);
     const descricao = removerAcentosECaracteresEspeciais(document.getElementById('descricao').value.toUpperCase());
-    const prazo = document.getElementById('prazo').value;
-    
-    const trocaEndereco = document.getElementById('trocaEndereco').checked;
-    
-    const prazoTexto = `CLIENTE CIENTE DO PRAZO MÁXIMO DE ${prazo} ÚTEIS E CUSTOS DA VISITA TÉCNICA DE R$50,00 A HORA TÉCNICA E MATERIAIS SE NECESSÁRIO`;
-    
+        
     let chamado = `
-PERIODO: ${periodo} _____
-CA: ${ca} _____
-ID: ${id} _____
-PPPOE: ${pppoe} _____
+TELEFONE PRINCIPAL: ${telefone1} _____
+TELEFONE SECUNDARIO: ${telefone2} _____
 NOME CLIENTE: ${nome_cliente} _____
-ENDEREÇO: ${endereco} _____
-PONTO DE REFERÊNCIA: ${referencia} _____
-TELEFONE PARA CONTATO: ${telefone} _____
-POTENCIA: ${potencia} _____
+PERIODO: ${periodo} _____
 
-DESCRIÇÃO: ${descricao} _____
-`;
+ID: ${id} _____
+TIPO DE PROCESSO: ${processo}
+EQUIPAMENTO PARA RETIRAR DO ALMOXARIFADO: ${comodato}
 
-    if (!trocaEndereco) {
-        chamado += `____${prazoTexto}____\n`;
-    }
+CA 1: ${ca} _____ - ${metragem1} _____
+CA 2: ${ca2} _____ - ${metragem2} _____
+CA 3: ${ca3} _____ - ${metragem3} _____
 
-    if (trocaEndereco) {
-        chamado += `
+
+PPPOE: ${pppoe} _____
+ENDERECO: ${endereco} _____
+PONTO DE REFERENCIA: ${referencia} _____
+TIPO DE PLANO: ${plano} _____
+
+FIDELIDADE: ${fidelidade} _____
+DESCRICAO: ${descricao} _____
+
 O CONTRATANTE DECLARA PARA TODOS OS FINS DE DIREITO QUE OS
 SERVIÇOS SOLICITADOS FORAM ATIVADOS/INSTALADOS NA PRESENTE DATA,
 ESTANDO EM PERFEITO FUNCIONAMENTO. O CONTRATANTE DECLARA TAMBÉM
@@ -67,7 +77,6 @@ QUE TESTOU E APROVOU OS SERVIÇOS CONTRATADOS E DIANTE DISSO O
 CONTRATANTE RENUNCIA O DIREITO DE ARREPENDIMENTO, PREVISTO NO ART. 49
 DA LEI 8078
 `;
-    }
 
     const resultadoElement = document.getElementById('resultado');
     resultadoElement.textContent = chamado;
