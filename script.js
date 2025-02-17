@@ -35,11 +35,11 @@ function gerarChamado() {
     const potencia = removerAcentosECaracteresEspeciais(document.getElementById('potencia').value.toUpperCase());
     const descricao = removerAcentosECaracteresEspeciais(document.getElementById('descricao').value.toUpperCase());
     const prazo = document.getElementById('prazo').value;
-
+    
     const trocaEndereco = document.getElementById('trocaEndereco').checked;
-
+    
     const prazoTexto = `CLIENTE CIENTE DO PRAZO MÁXIMO DE ${prazo} ÚTEIS E CUSTOS DA VISITA TÉCNICA DE R$50,00 A HORA TÉCNICA E MATERIAIS SE NECESSÁRIO`;
-
+    
     let chamado = `
 PERIODO: ${periodo} _____
 CA: ${ca} _____
@@ -71,13 +71,16 @@ DA LEI 8078
 
     const resultadoElement = document.getElementById('resultado');
     resultadoElement.textContent = chamado;
-
     resultadoElement.style.display = "block";
-    navigator.clipboard.writeText(chamado);
 
     navigator.clipboard.writeText(chamado).then(() => {
         alert('Chamado gerado e copiado para a área de transferência!');
-    }, () => {
+
+        setTimeout(() => {
+            document.getElementById('periodo').focus();
+        }, 100);
+        
+    }).catch(() => {
         alert('Falha ao copiar para a área de transferência.');
     });
 }
