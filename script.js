@@ -87,3 +87,34 @@ function limparFormulario() {
     document.getElementById('resultado').textContent = '';
     document.getElementById('resultado').style.display = "none";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("themeToggle");
+    const themeLabel = document.getElementById("themeLabel");
+    const logo = document.getElementById("logo");
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+        themeToggle.checked = true;
+        themeLabel.textContent = "Light Mode";
+        logo.src = "assets/light-logo.png";
+    } else {
+        logo.src = "assets/dark-logo.png";
+    }
+
+    themeToggle.addEventListener("change", function () {
+        if (themeToggle.checked) {
+            document.body.classList.add("light-mode");
+            localStorage.setItem("theme", "light");
+            themeLabel.textContent = "Light Mode";
+            logo.src = "assets/light-logo.png";
+        } else {
+            document.body.classList.remove("light-mode");
+            localStorage.setItem("theme", "dark");
+            themeLabel.textContent = "Dark Mode";
+            logo.src = "assets/dark-logo.png";
+        }
+    });
+});
