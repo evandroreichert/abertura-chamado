@@ -61,7 +61,6 @@ CA 1: ${ca} _____ - ${metragem1} _____
 CA 2: ${ca2} _____ - ${metragem2} _____
 CA 3: ${ca3} _____ - ${metragem3} _____
 
-
 PPPOE: ${pppoe} _____
 ENDERECO: ${endereco} _____
 PONTO DE REFERENCIA: ${referencia} _____
