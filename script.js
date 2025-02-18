@@ -25,9 +25,9 @@ function removerAcentosECaracteresEspeciais(str) {
 
 function gerarChamado() {
     const periodo = document.getElementById('periodo').value.toUpperCase();
-    const fidelidade = document.getElementById('fidelidade').value.toUpperCase();
+    const fidelidade = document.querySelector('input[name="fidelidade"]:checked').nextElementSibling.textContent.toUpperCase();
     const processo = removerAcentosECaracteresEspeciais(document.getElementById('tipo_processo').value.toUpperCase());
-    const comodato = removerAcentosECaracteresEspeciais(document.getElementById('comodato').value.toUpperCase());
+    const comodato = removerAcentosECaracteresEspeciais(document.querySelector('input[name="comodato"]:checked').nextElementSibling.textContent.toUpperCase());
     const plano = removerAcentosECaracteresEspeciais(document.getElementById('plano').value.toUpperCase());
 
     const ca = removerAcentosECaracteresEspeciais(document.getElementById('cto1').value.toUpperCase());

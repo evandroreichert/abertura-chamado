@@ -19,7 +19,7 @@
     
     
     <div class="logo">
-        <img id="logo" src="/assets/dark-logo2.png" alt="Logo">
+        <img id="logo" src="/assets/dark-logo.png" alt="Logo">
     </div>
     <form id="chamadoForm">
         <h1>Abertura de Chamado ⚡</h1>
@@ -66,12 +66,14 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="comodato">Equipamento em Comodato</label>
-                <select id="comodato" name="comodato">
-                    <option value="Sim">SIM</option>
-                    <option value="Não">NÃO</option>
+                <label for="periodo">Período</label>
+                <select id="periodo" name="periodo">
+                    <option value="MANHÃ">MANHÃ</option>
+                    <option value="TARDE">TARDE</option>
+                    <option value="INDIFERENTE">INDIFERENTE</option>
                 </select>
             </div>
+            
 
         </div>
         
@@ -117,24 +119,35 @@
 
         <div class="form-row form-row-2">
             <div class="form-group">
-                <label for="periodo">Período</label>
-                <select id="periodo" name="periodo">
-                    <option value="MANHÃ">MANHÃ</option>
-                    <option value="TARDE">TARDE</option>
-                    <option value="INDIFERENTE">INDIFERENTE</option>
-                </select>
+                <label for="comodato">Equipamento em Comodato</label>
+                 <div class="radio-inputs">
+                 <label class="radio last-radio">
+                     <input type="radio" name="comodato" checked="">
+                     <span class="name">SIM</span>
+                </label>
+                <label class="radio last-radio">
+                 <input type="radio" name="comodato">
+                <span class="name">NÃO</span>
+                </label>
+                 </div>
             </div>
             <div class="form-group">
                 <label for="fidelidade">Fidelidade</label>
-                <select id="fidelidade" name="fidelidade">
-                    <option value="12 MESES">12 MESES</option>
-                    <option value="24 MESES">24 MESES</option>
-                </select>
+                <div class="radio-inputs">
+                    <label class="radio last-radio">
+                        <input type="radio" name="fidelidade" checked="">
+                        <span class="name">12 MESES</span>
+                   </label>
+                   <label class="radio last-radio">
+                    <input type="radio" name="fidelidade">
+                   <span class="name">24 MESES</span>
+                   </label>
+                </div>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="pppoe">PPPOe</label>
+            <label for="pppoe" class="last-input">PPPOe</label>
             <input type="text" id="pppoe" name="pppoe" required>
         </div>
 
