@@ -48,26 +48,25 @@ function gerarChamado() {
     const descricao = removerAcentosECaracteresEspeciais(document.getElementById('descricao').value.toUpperCase());
         
     let chamado = `
-TELEFONE PRINCIPAL: ${telefone1} _____
-TELEFONE SECUNDARIO: ${telefone2} _____
-NOME CLIENTE: ${nome_cliente} _____
-PERIODO: ${periodo} _____
+TELEFONE PRINCIPAL: ${telefone1}
+TELEFONE SECUNDARIO: ${telefone2}
+NOME CLIENTE: ${nome_cliente}
+PERIODO: ${periodo}
 
-ID: ${id} _____
+ID: ${id}
 TIPO DE PROCESSO: ${processo}
 EQUIPAMENTO EM COMODATO: ${comodato}
 
-CA 1: ${ca} _____ - ${metragem1} _____
-CA 2: ${ca2} _____ - ${metragem2} _____
-CA 3: ${ca3} _____ - ${metragem3} _____
+CA 1: ${ca} ${ca ? ` - ${metragem1}M` : ''}
+CA 2: ${ca2} ${ca2 ? ` - ${metragem2}M` : ''}
+CA 3: ${ca3} ${ca3 ? ` - ${metragem3}M` : ''}
+PPPOE: ${pppoe}
+ENDERECO: ${endereco}
+PONTO DE REFERENCIA: ${referencia}
+TIPO DE PLANO: ${plano}
 
-PPPOE: ${pppoe} _____
-ENDERECO: ${endereco} _____
-PONTO DE REFERENCIA: ${referencia} _____
-TIPO DE PLANO: ${plano} _____
-
-FIDELIDADE: ${fidelidade} _____
-DESCRICAO: ${descricao} _____
+FIDELIDADE: ${fidelidade}
+DESCRICAO: ${descricao}
 
 O CONTRATANTE DECLARA PARA TODOS OS FINS DE DIREITO QUE OS
 SERVIÇOS SOLICITADOS FORAM ATIVADOS/INSTALADOS NA PRESENTE DATA,

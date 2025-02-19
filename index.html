@@ -37,13 +37,20 @@
         <div class="form-row form-row-2">
             <div class="form-group">
                 <label for="telefone">Telefone Principal</label>
-                <input type="text" id="telefone" name="telefone" pattern="\d{10,11}" title="Insira um número de telefone válido com 10 ou 11 dígitos." required>
+                <input type="text" id="telefone" name="telefone" 
+                       pattern="^[0-9]{10,11}$" 
+                       title="Insira um número de telefone válido com 10 ou 11 dígitos." 
+                       inputmode="numeric" maxlength="11" required>
             </div>
             <div class="form-group">
                 <label for="telefone2">Telefone Secundário</label>
-                <input type="text" id="telefone2" name="telefone2" pattern="\d{10,11}" title="Insira um número de telefone válido com 10 ou 11 dígitos." required>
+                <input type="text" id="telefone2" name="telefone2" 
+                       pattern="^[0-9]{10,11}$" 
+                       title="Insira um número de telefone válido com 10 ou 11 dígitos." 
+                       inputmode="numeric" maxlength="11" required>
             </div>
         </div>
+        
 
         <div class="form-group">
             <label for="endereco">Endereço</label>
@@ -90,30 +97,39 @@
         <div class="form-row form-row-4">
             <div class="form-group">
                 <label for="cto1">CTO 1</label>
-                <input type="text" id="cto1" name="cto1" placeholder="Código da CTO 1" required>
+                <input type="text" id="cto1" name="cto1" required>
             </div>
             <div class="form-group">
                 <label for="metragem1">Metragem CTO 1</label>
-                <input type="text" id="metragem1" name="metragem1" placeholder="Exemplo: 50M" required>
+                <div class="input-group">
+                    <input type="text" id="metragem1" name="metragem1" required>
+                    <span class="unit">Metros</span>
+                </div>
             </div>
             <div class="form-group">
                 <label for="cto2">CTO 2</label>
-                <input type="text" id="cto2" name="cto2" placeholder="Código da CTO 2" required>
+                <input type="text" id="cto2" name="cto2" required>
             </div>
             <div class="form-group">
                 <label for="metragem2">Metragem CTO 2</label>
-                <input type="text" id="metragem2" name="metragem2" placeholder="Exemplo: 150M" required>
+                <div class="input-group">
+                    <input type="text" id="metragem2" name="metragem2" required>
+                    <span class="unit">Metros</span>
+                </div>
             </div>
         </div>
-
+        
         <div class="form-row form-row-2">
             <div class="form-group">
                 <label for="cto3">CTO 3 <span class="placeholder">- Opcional</span></label>
-                <input type="text" id="cto3" name="cto3" placeholder="Código da CTO 3" required>
+                <input type="text" id="cto3" name="cto3">
             </div>
             <div class="form-group">
                 <label for="metragem3">Metragem CTO 3 <span class="placeholder">- Opcional</span></label>
-                <input type="text" id="metragem3" name="metragem3" placeholder="Exemplo: 350M" required>
+                <div class="input-group">
+                    <input type="text" id="metragem3" name="metragem3">
+                    <span class="unit">Metros</span>
+                </div>
             </div>
         </div>
 
