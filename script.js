@@ -158,8 +158,6 @@ async function atualizarContador() {
         }
 
         const data = await response.json();
-        console.log('Resposta da API:', data); 
-
         const contador = data.total ?? data.count ?? 'Erro';
         document.getElementById('contador').innerHTML = `Este formulário já foi usado <strong>${contador}</strong> vezes.`;
     } catch (error) {
