@@ -82,6 +82,7 @@ DA LEI 8078
 
     navigator.clipboard.writeText(chamado).then(() => {
         alert('Chamado gerado e copiado para a área de transferência!');
+        incrementarChamado();
 
         setTimeout(() => {
             document.getElementById('periodo').focus();
@@ -128,3 +129,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+let contadorChamados = 0;
+
+document.addEventListener("DOMContentLoaded", async function () {
+    await atualizarContador();
+});
+
+async function incrementarChamado() {
+    try {
+        const response = await fetch('https://server-sn-production.up.railway.app/incrementar', {
+            method: 'GET'
+        });
+        if (!response.ok) {
+            throw new Error('Erro ao incrementar chamado');
+        }
+        await atualizarContador();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function atualizarContador() {
+    try {
+        const response = await fetch('https://server-sn-production.up.railway.app/contador');
+        if (!response.ok) {
+            throw new Error('Erro ao obter contador de chamados');
+        }
+
+        const data = await response.json();
+        console.log('Resposta da API:', data); 
+
+        const contador = data.total ?? data.count ?? 'Erro';
+        document.getElementById('contador').innerHTML = `Este formulário já foi usado <strong>${contador}</strong> vezes.`;
+    } catch (error) {
+        console.error(error);
+        document.getElementById('contador').innerText = `Erro ao carregar contador.`;
+    }
+}
