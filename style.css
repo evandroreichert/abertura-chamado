@@ -23,7 +23,6 @@ h1 {
     padding: 15px 25px;
 }
 
-/* Links da navegação */
 .nav-links {
     display: flex;
     gap: 40px;
@@ -38,7 +37,7 @@ h1 {
 }
 
 .nav a:hover {
-    color: #ffcc00;
+    color: #0099ff;
 }
 
 .logo {
