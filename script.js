@@ -48,12 +48,15 @@ function gerarChamado() {
     const descricao = removerAcentosECaracteresEspeciais(document.getElementById('descricao').value.toUpperCase());
         
     let chamado = `
-TELEFONE PRINCIPAL: ${telefone1}
-TELEFONE SECUNDARIO: ${telefone2}
+ID: ${id}
 NOME CLIENTE: ${nome_cliente}
+ENDERECO: ${endereco}
+PONTO DE REFERENCIA: ${referencia}
 PERIODO: ${periodo}
 
-ID: ${id}
+TELEFONE PRINCIPAL: ${telefone1}
+TELEFONE SECUNDARIO: ${telefone2}
+
 TIPO DE PROCESSO: ${processo}
 EQUIPAMENTO EM COMODATO: ${comodato}
 
@@ -61,8 +64,7 @@ CA 1: ${ca} ${ca ? ` - ${metragem1}M` : ''}
 CA 2: ${ca2} ${ca2 ? ` - ${metragem2}M` : ''}
 CA 3: ${ca3} ${ca3 ? ` - ${metragem3}M` : ''}
 PPPOE: ${pppoe}
-ENDERECO: ${endereco}
-PONTO DE REFERENCIA: ${referencia}
+
 TIPO DE PLANO: ${plano}
 
 FIDELIDADE: ${fidelidade}
