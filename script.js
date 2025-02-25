@@ -29,6 +29,8 @@ function gerarChamado() {
     const processo = removerAcentosECaracteresEspeciais(document.getElementById('tipo_processo').value.toUpperCase());
     const comodato = removerAcentosECaracteresEspeciais(document.querySelector('input[name="comodato"]:checked').nextElementSibling.textContent.toUpperCase());
     const plano = removerAcentosECaracteresEspeciais(document.getElementById('plano').value.toUpperCase());
+    const login = removerAcentosECaracteresEspeciais(document.getElementById('login').value.toUpperCase());
+    const senha = removerAcentosECaracteresEspeciais(document.getElementById('senha').value.toUpperCase());
 
     const ca = removerAcentosECaracteresEspeciais(document.getElementById('cto1').value.toUpperCase());
     const ca2 = removerAcentosECaracteresEspeciais(document.getElementById('cto2').value.toUpperCase());
@@ -63,7 +65,10 @@ EQUIPAMENTO EM COMODATO: ${comodato}
 CA 1: ${ca} ${ca ? ` - ${metragem1}M` : ''}
 CA 2: ${ca2} ${ca2 ? ` - ${metragem2}M` : ''}
 CA 3: ${ca3} ${ca3 ? ` - ${metragem3}M` : ''}
+
 PPPOE: ${pppoe}
+NOME DA REDE: ${login ? login : 'CONFIGURAR NO LOCAL'}
+SENHA DA REDE: ${senha ? senha : 'CONFIGURAR NO LOCAL'}
 
 TIPO DE PLANO: ${plano}
 

@@ -171,11 +171,22 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="pppoe" class="last-input">PPPOe</label>
-            <input type="text" id="pppoe" name="pppoe" required>
+        <div class="form-row form-row-3">
+            <div class="form-group">
+                <label for="pppoe" class="last-input">PPPoE</label>
+                <input type="text" id="pppoe" name="pppoe" required>
+            </div>
+            <div class="form-group">
+                <label for="login" class="last-input">Nome da Rede Wi-Fi</label>
+                <input type="text" id="login" name="login">
+            </div>
+            <div class="form-group">
+                <label for="senha" class="last-input">Senha da Rede Wi-Fi</label>
+                <input type="text" id="senha" name="senha">
+            </div>
         </div>
-
+        
+        
         <div class="button-group">
             <button type="button" onclick="gerarChamado()">Gerar Chamado e Copiar</button>
             <button type="button" id="resetButton" onclick="limparFormulario()">Limpar Formulário</button>
