@@ -30,7 +30,7 @@ function gerarChamado() {
     const comodato = removerAcentosECaracteresEspeciais(document.querySelector('input[name="comodato"]:checked').nextElementSibling.textContent.toUpperCase());
     const plano = removerAcentosECaracteresEspeciais(document.getElementById('plano').value.toUpperCase());
     const login = removerAcentosECaracteresEspeciais(document.getElementById('login').value.toUpperCase());
-    const senha = removerAcentosECaracteresEspeciais(document.getElementById('senha').value.toUpperCase());
+    const senha = removerAcentosECaracteresEspeciais(document.getElementById('senha').value);
 
     const ca = removerAcentosECaracteresEspeciais(document.getElementById('cto1').value.toUpperCase());
     const ca2 = removerAcentosECaracteresEspeciais(document.getElementById('cto2').value.toUpperCase());
@@ -41,7 +41,7 @@ function gerarChamado() {
     const metragem3 = removerAcentosECaracteresEspeciais(document.getElementById('metragem3').value.toUpperCase());
 
     const id = removerAcentosECaracteresEspeciais(document.getElementById('id').value.toUpperCase());
-    const pppoe = removerAcentosECaracteresEspeciais(document.getElementById('pppoe').value.toUpperCase());
+    const pppoe = removerAcentosECaracteresEspeciais(document.getElementById('pppoe').value);
     const nome_cliente = removerAcentosECaracteresEspeciais(document.getElementById('nome_cliente').value.toUpperCase());
     const endereco = removerAcentosECaracteresEspeciais(document.getElementById('endereco').value.toUpperCase());
     const referencia = removerAcentosECaracteresEspeciais(document.getElementById('referencia').value.toUpperCase());
