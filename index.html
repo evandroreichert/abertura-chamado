@@ -8,6 +8,7 @@
     <title>Abertura de Chamado</title>
 </head>
 <body>
+
     <header class="header">
         <nav class="nav">
             <div class="nav-links">
@@ -23,15 +24,15 @@
             </div>
         </nav>
     </header>
-    
+
     <div class="logo">
         <img id="logo" src="/assets/dark-logo.png" alt="Logo">
     </div>
-    
+
     <form id="chamadoForm">
         <h1>Abertura de Chamado ⚡</h1>
         <p id="contador"></p>
-        
+
         <div class="form-row form-row-2">
             <div class="form-group">
                 <label for="id">ID</label>
@@ -42,34 +43,35 @@
                 <input type="text" id="nome_cliente" name="nome_cliente" required>
             </div>
         </div>
-        
+
         <div class="form-row form-row-2">
             <div class="form-group">
                 <label for="telefone">Telefone Principal</label>
                 <input type="text" id="telefone" name="telefone" 
-                    pattern="^[0-9]{10,11}$" 
-                    title="Insira um número de telefone válido com 10 ou 11 dígitos." 
-                    inputmode="numeric" required>
+                       pattern="^[0-9]{10,11}$" 
+                       title="Insira um número de telefone válido com 10 ou 11 dígitos." 
+                       inputmode="numeric" required>
             </div>
             <div class="form-group">
                 <label for="telefone2">Telefone Secundário</label>
                 <input type="text" id="telefone2" name="telefone2" 
-                    pattern="^[0-9]{10,11}$" 
-                    title="Insira um número de telefone válido com 10 ou 11 dígitos." 
-                    inputmode="numeric" required>
+                       pattern="^[0-9]{10,11}$" 
+                       title="Insira um número de telefone válido com 10 ou 11 dígitos." 
+                       inputmode="numeric" required>
             </div>
         </div>
-        
+
+
         <div class="form-group">
             <label for="endereco">Endereço</label>
             <input type="text" id="endereco" name="endereco" required>
         </div>
-        
+
         <div class="form-group">
             <label for="referencia">Ponto de Referência</label>
             <input type="text" id="referencia" name="referencia" required>
         </div>
-        
+
         <div class="form-row form-row-2">
             <div class="form-group">
                 <label for="tipo_processo">Tipo de Processo</label>
@@ -89,31 +91,72 @@
                     <option value="INDIFERENTE">Indiferente</option>
                 </select>
             </div>
+            
+
         </div>
-        
+
         <div class="form-group">
             <label for="plano">Plano <span class="placeholder">- Exemplo: 500MB Net</span></label>
             <input type="text" id="plano" name="plano">
         </div>
-        
+
         <div class="form-group">
             <label for="descricao">Observação</label>
             <textarea id="descricao" name="descricao" rows="4"></textarea>
         </div>
-        
+
+        <div class="form-row form-row-4">
+            <div class="form-group">
+                <label for="cto1">CTO 1</label>
+                <input type="text" id="cto1" name="cto1" required>
+            </div>
+            <div class="form-group">
+                <label for="metragem1">Metragem CTO 1</label>
+                <div class="input-group">
+                    <input type="text" id="metragem1" name="metragem1" required>
+                    <span class="unit">Metros</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cto2">CTO 2</label>
+                <input type="text" id="cto2" name="cto2" required>
+            </div>
+            <div class="form-group">
+                <label for="metragem2">Metragem CTO 2</label>
+                <div class="input-group">
+                    <input type="text" id="metragem2" name="metragem2" required>
+                    <span class="unit">Metros</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row form-row-2">
+            <div class="form-group">
+                <label for="cto3">CTO 3 <span class="placeholder">- Opcional</span></label>
+                <input type="text" id="cto3" name="cto3">
+            </div>
+            <div class="form-group">
+                <label for="metragem3">Metragem CTO 3 <span class="placeholder">- Opcional</span></label>
+                <div class="input-group">
+                    <input type="text" id="metragem3" name="metragem3">
+                    <span class="unit">Metros</span>
+                </div>
+            </div>
+        </div>
+
         <div class="form-row form-row-2">
             <div class="form-group">
                 <label for="comodato">Equipamento em Comodato</label>
-                <div class="radio-inputs">
-                    <label class="radio last-radio">
-                        <input type="radio" name="comodato" checked="">
-                        <span class="name">SIM</span>
-                    </label>
-                    <label class="radio last-radio">
-                        <input type="radio" name="comodato">
-                        <span class="name">NÃO</span>
-                    </label>
-                </div>
+                 <div class="radio-inputs">
+                 <label class="radio last-radio">
+                     <input type="radio" name="comodato" checked="">
+                     <span class="name">SIM</span>
+                </label>
+                <label class="radio last-radio">
+                 <input type="radio" name="comodato">
+                <span class="name">NÃO</span>
+                </label>
+                 </div>
             </div>
             <div class="form-group">
                 <label for="fidelidade">Fidelidade</label>
@@ -121,22 +164,39 @@
                     <label class="radio last-radio">
                         <input type="radio" name="fidelidade" checked="">
                         <span class="name">12 MESES</span>
-                    </label>
-                    <label class="radio last-radio">
-                        <input type="radio" name="fidelidade">
-                        <span class="name">24 MESES</span>
-                    </label>
+                   </label>
+                   <label class="radio last-radio">
+                    <input type="radio" name="fidelidade">
+                   <span class="name">24 MESES</span>
+                   </label>
                 </div>
             </div>
         </div>
+
+        <div class="form-row form-row-3">
+            <div class="form-group">
+                <label for="pppoe" class="last-input">PPPoE</label>
+                <input type="text" id="pppoe" name="pppoe" required>
+            </div>
+            <div class="form-group">
+                <label for="login" class="last-input">Nome da Rede Wi-Fi</label>
+                <input type="text" id="login" name="login">
+            </div>
+            <div class="form-group">
+                <label for="senha" class="last-input">Senha da Rede Wi-Fi</label>
+                <input type="text" id="senha" name="senha">
+            </div>
+        </div>
         
+
         <div class="button-group">
             <button type="button" onclick="gerarChamado()">Gerar Chamado e Copiar</button>
             <button type="button" id="resetButton" onclick="limparFormulario()">Limpar Formulário</button>
         </div>
     </form>
-    
+
     <p id="resultado"></p>
+
     <script src="script.js"></script>
 </body>
 </html>
