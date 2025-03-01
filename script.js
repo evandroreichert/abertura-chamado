@@ -211,7 +211,7 @@ async function atualizarContador() {
         const contador = data.total ?? data.count ?? 'Erro';
         
         document.getElementById('contador').innerHTML = 
-            `Este formulário já foi usado <strong>${contador}</strong> vezes.`;
+            `Este formulário foi usado <strong>${contador}</strong> vezes.`;
     } catch (error) {
         console.error('Falha ao atualizar contador:', error);
         document.getElementById('contador').innerText = `Erro ao carregar contador.`;
