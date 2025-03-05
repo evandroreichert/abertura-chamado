@@ -55,8 +55,32 @@ function valorOuPadrao(valor, padrao = 'CONFIGURAR NO LOCAL') {
     return valor || padrao;
 }
 
+function adicionarInputFTTA() {
+    const tipoProcesso = document.getElementById('tipo_processo').value;
+    const containerFTTA = document.getElementById('container-ftta');
+    const descricaoParent = document.getElementById('plano').parentElement;
+
+    if (tipoProcesso === 'Instalação FTTA') {
+        if (!containerFTTA) {
+            const novoContainer = document.createElement('div');
+            novoContainer.id = 'container-ftta';
+            novoContainer.className = 'form-group';
+            novoContainer.innerHTML = `
+                <label for="ftta">FTTA <span class="placeholder">- Opcional</span></label>
+                <textarea id="ftta" name="ftta" class="form-control"></textarea>
+            `;
+
+            descricaoParent.parentNode.insertBefore(novoContainer, descricaoParent);
+        }
+    } else {
+        if (containerFTTA) {
+            containerFTTA.remove();
+        }
+    }
+}
+
 function coletarDadosFormulario() {
-    return {
+    const dados = {
         periodo: obterValorCampo('periodo'),
         fidelidade: obterValorRadio('fidelidade'),
         processo: obterValorCampo('tipo_processo'),
@@ -64,15 +88,15 @@ function coletarDadosFormulario() {
         plano: obterValorCampo('plano'),
         login: obterValorCampo('login'),
         senha: obterValorCampo('senha', false),
-        
+
         ca1: obterValorCampo('cto1'),
         ca2: obterValorCampo('cto2'),
         ca3: obterValorCampo('cto3'),
-        
+
         metragem1: obterValorCampo('metragem1'),
         metragem2: obterValorCampo('metragem2'),
         metragem3: obterValorCampo('metragem3'),
-        
+
         id: obterValorCampo('id'),
         pppoe: obterValorCampo('pppoe', false),
         nome_cliente: obterValorCampo('nome_cliente'),
@@ -80,12 +104,14 @@ function coletarDadosFormulario() {
         referencia: obterValorCampo('referencia'),
         telefone1: obterValorCampo('telefone', false),
         telefone2: obterValorCampo('telefone2', false),
-        descricao: obterValorCampo('descricao')
+        descricao: obterValorCampo('descricao'),
+        ftta: obterValorCampo('ftta') 
     };
+    return dados;
 }
 
 function gerarTextoChamado(dados) {
-    return `
+    let textoChamado = `
 ID: ${dados.id}
 NOME CLIENTE: ${dados.nome_cliente}
 ENDERECO: ${dados.endereco}
@@ -108,7 +134,16 @@ SENHA DA REDE: ${valorOuPadrao(dados.senha)}
 
 TIPO DE PLANO: ${dados.plano}
 
-FIDELIDADE: ${dados.fidelidade}
+FIDELIDADE: ${dados.fidelidade}`;
+
+    if (dados.ftta && dados.ftta.trim() !== '') {
+        textoChamado += `
+
+FTTA: \n ${ dados.ftta}`;
+    }
+
+    textoChamado += `
+
 DESCRICAO: ${dados.descricao}
 
 O CONTRATANTE DECLARA PARA TODOS OS FINS DE DIREITO QUE OS
@@ -118,6 +153,7 @@ QUE TESTOU E APROVOU OS SERVIÇOS CONTRATADOS E DIANTE DISSO O
 CONTRATANTE RENUNCIA O DIREITO DE ARREPENDIMENTO, PREVISTO NO ART. 49
 DA LEI 8078
 `;
+    return textoChamado;
 }
 
 function exibirChamado(textoChamado) {
@@ -164,6 +200,11 @@ function limparFormulario() {
     const resultadoElement = document.getElementById('resultado');
     resultadoElement.textContent = '';
     resultadoElement.style.display = "none";
+    
+    const containerFTTA = document.getElementById('container-ftta');
+    if (containerFTTA) {
+        containerFTTA.remove();
+    }
 }
 
 function configurarTema(modoClaro) {
@@ -228,6 +269,8 @@ function inicializarApp() {
     themeToggle.addEventListener("change", function() {
         configurarTema(themeToggle.checked);
     });
+    
+    document.getElementById('tipo_processo').addEventListener('change', adicionarInputFTTA);
     
     atualizarContador();
 }
