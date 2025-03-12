@@ -56,12 +56,56 @@ function valorOuPadrao(valor, padrao = 'CONFIGURAR NO LOCAL') {
 }
 
 function adicionarInputFTTA() {
-    const tipoProcesso = document.getElementById('tipo_processo').value;
-    const containerFTTA = document.getElementById('container-ftta');
+    const tipoProcessoSelect = document.getElementById('tipo_processo');
+    const tipoProcesso = tipoProcessoSelect ? tipoProcessoSelect.value : '';
     const descricaoParent = document.getElementById('plano').parentElement;
 
-    if (tipoProcesso === 'Instalação FTTA') {
-        if (!containerFTTA) {
+    let containerCaixaFTTA = document.getElementById('container-caixa-ftta');
+    let containerFTTA = document.getElementById('container-ftta');
+
+    const ctoInputIds = ['cto1', 'metragem1', 'cto2', 'metragem2', 'cto3', 'metragem3'];
+    
+    const ctoContainers = ctoInputIds.map(id => {
+        const input = document.getElementById(id);
+        return input ? input.closest('.form-group') : null;
+    }).filter(container => container !== null);
+
+    const isTrocaFTTA = tipoProcesso.includes('FTTA') && tipoProcesso.includes('Troca');
+    const isInstalacaoFTTA = tipoProcesso.includes('FTTA') && tipoProcesso.includes('Instalação');
+
+    if (isTrocaFTTA) {
+        ctoContainers.forEach(container => {
+            container.style.display = 'none';
+        });
+
+        if (containerFTTA) {
+            containerFTTA.remove();
+        }
+
+        if (!containerCaixaFTTA && descricaoParent) {
+            const novoContainer = document.createElement('div');
+            novoContainer.id = 'container-caixa-ftta';
+            novoContainer.className = 'form-group';
+            novoContainer.innerHTML = `
+                <label for="caixa_ftta">Caixa FTTA</label>
+                <input type="text" id="caixa_ftta" name="caixa_ftta" class="form-control" required>
+            `;
+            
+            if (descricaoParent.parentNode) {
+                descricaoParent.parentNode.insertBefore(novoContainer, descricaoParent);
+            }
+        }
+    } 
+    else if (isInstalacaoFTTA) {
+        ctoContainers.forEach(container => {
+            container.style.display = 'block';
+        });
+
+        if (containerCaixaFTTA) {
+            containerCaixaFTTA.remove();
+        }
+
+        if (!containerFTTA && descricaoParent) {
             const novoContainer = document.createElement('div');
             novoContainer.id = 'container-ftta';
             novoContainer.className = 'form-group';
@@ -69,14 +113,102 @@ function adicionarInputFTTA() {
                 <label for="ftta">FTTA <span class="placeholder">- Opcional</span></label>
                 <textarea id="ftta" name="ftta" class="form-control"></textarea>
             `;
-
-            descricaoParent.parentNode.insertBefore(novoContainer, descricaoParent);
+            
+            if (descricaoParent.parentNode) {
+                descricaoParent.parentNode.insertBefore(novoContainer, descricaoParent);
+            }
         }
-    } else {
+    } 
+    else {
+        ctoContainers.forEach(container => {
+            container.style.display = 'block';
+        });
+
+        if (containerCaixaFTTA) {
+            containerCaixaFTTA.remove();
+        }
         if (containerFTTA) {
             containerFTTA.remove();
         }
     }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const tipoProcessoSelect = document.getElementById('tipo_processo');
+    
+    if (tipoProcessoSelect) {
+        tipoProcessoSelect.addEventListener('change', adicionarInputFTTA);
+        adicionarInputFTTA();
+    }
+});
+
+function gerarTextoChamado(dados) {
+    let textoChamado = `
+ID: ${dados.id}
+NOME CLIENTE: ${dados.nome_cliente}
+ENDERECO: ${dados.endereco}
+PONTO DE REFERENCIA: ${dados.referencia}
+PERIODO: ${dados.periodo}
+
+TELEFONE PRINCIPAL: ${dados.telefone1}
+TELEFONE SECUNDARIO: ${dados.telefone2}
+
+TIPO DE PROCESSO: ${dados.processo}
+EQUIPAMENTO EM COMODATO: ${dados.comodato}
+`;
+
+    let temCTO = false;
+    
+    if (dados.ca1 && dados.ca1.trim() !== '') {
+        textoChamado += `\nCA 1: ${formatarCA(dados.ca1, dados.metragem1)}`;
+        temCTO = true;
+    }
+    
+    if (dados.ca2 && dados.ca2.trim() !== '') {
+        textoChamado += `\nCA 2: ${formatarCA(dados.ca2, dados.metragem2)}`;
+        temCTO = true;
+    }
+    
+    if (dados.ca3 && dados.ca3.trim() !== '') {
+        textoChamado += `\nCA 3: ${formatarCA(dados.ca3, dados.metragem3)}`;
+        temCTO = true;
+    }
+    
+    if (!temCTO) {
+        const caixaFtta = obterValorCampo('caixa_ftta');
+        if (caixaFtta && caixaFtta.trim() !== '') {
+            textoChamado += `\nCAIXA FTTA: ${caixaFtta}`;
+        }
+    }
+
+    textoChamado += `
+
+PPPOE: ${dados.pppoe}
+NOME DA REDE: ${valorOuPadrao(dados.login)}
+SENHA DA REDE: ${valorOuPadrao(dados.senha)}
+
+TIPO DE PLANO: ${dados.plano}
+
+FIDELIDADE: ${dados.fidelidade}`;
+
+    if (dados.ftta && dados.ftta.trim() !== '') {
+        textoChamado += `
+
+FTTA: \n${dados.ftta}`;
+    }
+
+    textoChamado += `
+
+DESCRICAO: ${dados.descricao}
+
+O CONTRATANTE DECLARA PARA TODOS OS FINS DE DIREITO QUE OS
+SERVIÇOS SOLICITADOS FORAM ATIVADOS/INSTALADOS NA PRESENTE DATA,
+ESTANDO EM PERFEITO FUNCIONAMENTO. O CONTRATANTE DECLARA TAMBÉM
+QUE TESTOU E APROVOU OS SERVIÇOS CONTRATADOS E DIANTE DISSO O
+CONTRATANTE RENUNCIA O DIREITO DE ARREPENDIMENTO, PREVISTO NO ART. 49
+DA LEI 8078
+`;
+    return textoChamado;
 }
 
 function coletarDadosFormulario() {
@@ -96,6 +228,8 @@ function coletarDadosFormulario() {
         metragem1: obterValorCampo('metragem1'),
         metragem2: obterValorCampo('metragem2'),
         metragem3: obterValorCampo('metragem3'),
+        
+        caixa_ftta: obterValorCampo('caixa_ftta', false),
 
         id: obterValorCampo('id'),
         pppoe: obterValorCampo('pppoe', false),
@@ -105,55 +239,9 @@ function coletarDadosFormulario() {
         telefone1: obterValorCampo('telefone', false),
         telefone2: obterValorCampo('telefone2', false),
         descricao: obterValorCampo('descricao'),
-        ftta: obterValorCampo('ftta') 
+        ftta: obterValorCampo('ftta', false) 
     };
     return dados;
-}
-
-function gerarTextoChamado(dados) {
-    let textoChamado = `
-ID: ${dados.id}
-NOME CLIENTE: ${dados.nome_cliente}
-ENDERECO: ${dados.endereco}
-PONTO DE REFERENCIA: ${dados.referencia}
-PERIODO: ${dados.periodo}
-
-TELEFONE PRINCIPAL: ${dados.telefone1}
-TELEFONE SECUNDARIO: ${dados.telefone2}
-
-TIPO DE PROCESSO: ${dados.processo}
-EQUIPAMENTO EM COMODATO: ${dados.comodato}
-
-CA 1: ${formatarCA(dados.ca1, dados.metragem1)}
-CA 2: ${formatarCA(dados.ca2, dados.metragem2)}
-CA 3: ${formatarCA(dados.ca3, dados.metragem3)}
-
-PPPOE: ${dados.pppoe}
-NOME DA REDE: ${valorOuPadrao(dados.login)}
-SENHA DA REDE: ${valorOuPadrao(dados.senha)}
-
-TIPO DE PLANO: ${dados.plano}
-
-FIDELIDADE: ${dados.fidelidade}`;
-
-    if (dados.ftta && dados.ftta.trim() !== '') {
-        textoChamado += `
-
-FTTA: \n ${ dados.ftta}`;
-    }
-
-    textoChamado += `
-
-DESCRICAO: ${dados.descricao}
-
-O CONTRATANTE DECLARA PARA TODOS OS FINS DE DIREITO QUE OS
-SERVIÇOS SOLICITADOS FORAM ATIVADOS/INSTALADOS NA PRESENTE DATA,
-ESTANDO EM PERFEITO FUNCIONAMENTO. O CONTRATANTE DECLARA TAMBÉM
-QUE TESTOU E APROVOU OS SERVIÇOS CONTRATADOS E DIANTE DISSO O
-CONTRATANTE RENUNCIA O DIREITO DE ARREPENDIMENTO, PREVISTO NO ART. 49
-DA LEI 8078
-`;
-    return textoChamado;
 }
 
 function exibirChamado(textoChamado) {
