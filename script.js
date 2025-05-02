@@ -144,17 +144,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function gerarTextoChamado(dados) {
     let textoChamado = `
-ID: ${dados.id}
-NOME CLIENTE: ${dados.nome_cliente}
-ENDERECO: ${dados.endereco}
-PONTO DE REFERENCIA: ${dados.referencia}
-PERIODO: ${dados.periodo}
+ID: ${dados.id}_____
+NOME CLIENTE: ${dados.nome_cliente}_____
+ENDERECO: ${dados.endereco}_____
+PONTO DE REFERENCIA: ${dados.referencia}_____
+PERIODO: ${dados.periodo}_____
 
-TELEFONE PRINCIPAL: ${dados.telefone1}
-TELEFONE SECUNDARIO: ${dados.telefone2}
+TELEFONE PRINCIPAL: ${dados.telefone1}_____
+TELEFONE SECUNDARIO: ${dados.telefone2}_____
 
-TIPO DE PROCESSO: ${dados.processo}
-EQUIPAMENTO EM COMODATO: ${dados.comodato}
+TIPO DE PROCESSO: ${dados.processo}_____
+EQUIPAMENTO EM COMODATO: ${dados.comodato}_____
 `;
 
     let temCTO = false;
@@ -183,30 +183,30 @@ EQUIPAMENTO EM COMODATO: ${dados.comodato}
 
     textoChamado += `
 
-PPPOE: ${dados.pppoe}
-NOME DA REDE: ${valorOuPadrao(dados.login)}
-SENHA DA REDE: ${valorOuPadrao(dados.senha)}
+PPPOE: ${dados.pppoe}_____
+NOME DA REDE: ${valorOuPadrao(dados.login)}_____
+SENHA DA REDE: ${valorOuPadrao(dados.senha)}_____
 
-TIPO DE PLANO: ${dados.plano}
+TIPO DE PLANO: ${dados.plano}_____
 
-FIDELIDADE: ${dados.fidelidade}`;
+FIDELIDADE: ${dados.fidelidade}`;_____
 
     if (dados.ftta && dados.ftta.trim() !== '') {
         textoChamado += `
 
-FTTA: \n${dados.ftta}`;
+FTTA: \n${dados.ftta}_____`;
     }
 
     textoChamado += `
 
-DESCRICAO: ${dados.descricao}
+DESCRICAO: ${dados.descricao}_____
 
 O CONTRATANTE DECLARA PARA TODOS OS FINS DE DIREITO QUE OS
 SERVIÇOS SOLICITADOS FORAM ATIVADOS/INSTALADOS NA PRESENTE DATA,
 ESTANDO EM PERFEITO FUNCIONAMENTO. O CONTRATANTE DECLARA TAMBÉM
 QUE TESTOU E APROVOU OS SERVIÇOS CONTRATADOS E DIANTE DISSO O
 CONTRATANTE RENUNCIA O DIREITO DE ARREPENDIMENTO, PREVISTO NO ART. 49
-DA LEI 8078
+DA LEI 8078_____
 `;
     return textoChamado;
 }
