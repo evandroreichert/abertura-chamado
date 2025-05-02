@@ -369,7 +369,7 @@ input:checked + .slider:before {
 }
 
 .light-mode h1 {
-  color: #14006a; 
+  color: #373535; 
 }
 
 .light-mode .form-group label {
