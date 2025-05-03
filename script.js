@@ -189,7 +189,7 @@ SENHA DA REDE: ${valorOuPadrao(dados.senha)}_____
 
 TIPO DE PLANO: ${dados.plano}_____
 
-FIDELIDADE: ${dados.fidelidade}`;_____
+FIDELIDADE: ${dados.fidelidade}_____`;
 
     if (dados.ftta && dados.ftta.trim() !== '') {
         textoChamado += `
