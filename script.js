@@ -1,4 +1,3 @@
-const API_URL = 'https://server-sn-production.up.railway.app';
 const TEMA_ESCURO = 'dark';
 const TEMA_CLARO = 'light';
 
@@ -309,41 +308,6 @@ function configurarTema(modoClaro) {
         themeLabel.textContent = "Dark Mode";
         logo.src = "assets/dark-logo.png";
         localStorage.setItem("theme", TEMA_ESCURO);
-    }
-}
-
-async function incrementarChamado() {
-    try {
-        const response = await fetch(`${API_URL}/incrementar`, {
-            method: 'GET'
-        });
-        
-        if (!response.ok) {
-            throw new Error('Erro ao incrementar chamado');
-        }
-        
-        await atualizarContador();
-    } catch (error) {
-        console.error('Falha ao incrementar contador:', error);
-    }
-}
-
-async function atualizarContador() {
-    try {
-        const response = await fetch(`${API_URL}/contador`);
-        
-        if (!response.ok) {
-            throw new Error('Erro ao obter contador de chamados');
-        }
-
-        const data = await response.json();
-        const contador = data.total ?? data.count ?? 'Erro';
-        
-        document.getElementById('contador').innerHTML = 
-            `Este formulário foi usado <strong>${contador}</strong> vezes.`;
-    } catch (error) {
-        console.error('Falha ao atualizar contador:', error);
-        document.getElementById('contador').innerText = `Erro ao carregar contador.`;
     }
 }
 
