@@ -250,6 +250,8 @@ function exibirChamado(textoChamado) {
 }
 
 async function copiarParaAreaDeTransferencia(texto) {
+
+    
     try {
         await navigator.clipboard.writeText(texto);
         focarNovoChamado();
@@ -275,9 +277,9 @@ async function gerarChamado() {
     const sucessoCopia = await copiarParaAreaDeTransferencia(textoChamado);
     
     if (sucessoCopia) {
-        alert('Chamado gerado e copiado para a área de transferência!');
+        showToast('Chamado copiado com sucesso!');
     } else {
-        alert('Falha ao copiar para a área de transferência.');
+        showToast('Falha ao copiar chamado!', true);
     }
 }
 
@@ -309,6 +311,17 @@ function configurarTema(modoClaro) {
         localStorage.setItem("theme", TEMA_ESCURO);
     }
 }
+
+function showToast(message, isError = false) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.className = 'toast show' + (isError ? ' error' : '');
+
+  setTimeout(() => {
+    toast.classList.remove('show', 'error');
+  }, 3000);
+}
+
 
 function inicializarApp() {
     const themeToggle = document.getElementById("themeToggle");
