@@ -252,7 +252,6 @@ function exibirChamado(textoChamado) {
 async function copiarParaAreaDeTransferencia(texto) {
     try {
         await navigator.clipboard.writeText(texto);
-        await incrementarChamado();
         focarNovoChamado();
         return true;
     } catch (erro) {
@@ -323,8 +322,6 @@ function inicializarApp() {
     });
     
     document.getElementById('tipo_processo').addEventListener('change', adicionarInputFTTA);
-    
-    atualizarContador();
-}
+    }
 
 document.addEventListener("DOMContentLoaded", inicializarApp);
