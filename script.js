@@ -54,6 +54,12 @@ function valorOuPadrao(valor, padrao = 'CONFIGURAR NO LOCAL') {
     return valor || padrao;
 }
 
+// Função para verificar se é troca de endereço
+function isTrocaEndereco(tipoProcesso) {
+    const tipoLower = tipoProcesso.toLowerCase();
+    return tipoLower.includes('troca de endereço') || tipoLower.includes('troca de endereco');
+}
+
 function adicionarInputFTTA() {
     const tipoProcessoSelect = document.getElementById('tipo_processo');
     const tipoProcesso = tipoProcessoSelect ? tipoProcessoSelect.value : '';
@@ -68,6 +74,21 @@ function adicionarInputFTTA() {
         const input = document.getElementById(id);
         return input ? input.closest('.form-group') : null;
     }).filter(container => container !== null);
+
+    // Controlar visibilidade do campo Fidelidade
+    const fidelidadeContainer = document.querySelector('input[name="fidelidade"]')?.closest('.form-group');
+    const isProcessoTrocaEndereco = isTrocaEndereco(tipoProcesso);
+    
+    if (fidelidadeContainer) {
+        if (isProcessoTrocaEndereco) {
+            fidelidadeContainer.style.display = 'none';
+            // Limpar seleção de fidelidade quando oculto
+            const fidelidadeInputs = document.querySelectorAll('input[name="fidelidade"]');
+            fidelidadeInputs.forEach(input => input.checked = false);
+        } else {
+            fidelidadeContainer.style.display = 'block';
+        }
+    }
 
     const isTrocaFTTA = tipoProcesso.includes('FTTA') && tipoProcesso.includes('Troca');
     const isInstalacaoFTTA = tipoProcesso.includes('FTTA') && tipoProcesso.includes('Instalação');
@@ -142,6 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function gerarTextoChamado(dados) {
+    const isProcessoTrocaEndereco = isTrocaEndereco(dados.processo);
+    
     let textoChamado = `
 ID: ${dados.id}_____
 NOME CLIENTE: ${dados.nome_cliente}_____
@@ -187,8 +210,13 @@ NOME DA REDE: ${valorOuPadrao(dados.login)}_____
 SENHA DA REDE: ${valorOuPadrao(dados.senha)}_____
 
 TIPO DE PLANO: ${dados.plano}_____
+`;
 
+    // Só adicionar fidelidade se NÃO for troca de endereço
+    if (!isProcessoTrocaEndereco) {
+        textoChamado += `
 FIDELIDADE: ${dados.fidelidade}_____`;
+    }
 
     if (dados.ftta && dados.ftta.trim() !== '') {
         textoChamado += `
@@ -250,8 +278,6 @@ function exibirChamado(textoChamado) {
 }
 
 async function copiarParaAreaDeTransferencia(texto) {
-
-    
     try {
         await navigator.clipboard.writeText(texto);
         focarNovoChamado();
@@ -293,6 +319,9 @@ function limparFormulario() {
     if (containerFTTA) {
         containerFTTA.remove();
     }
+    
+    // Reexecutar a função para restaurar a visibilidade dos campos
+    adicionarInputFTTA();
 }
 
 function configurarTema(modoClaro) {
@@ -322,7 +351,6 @@ function showToast(message, isError = false) {
   }, 3000);
 }
 
-
 function inicializarApp() {
     const themeToggle = document.getElementById("themeToggle");
     const savedTheme = localStorage.getItem("theme") || TEMA_ESCURO;
@@ -335,6 +363,6 @@ function inicializarApp() {
     });
     
     document.getElementById('tipo_processo').addEventListener('change', adicionarInputFTTA);
-    }
+}
 
 document.addEventListener("DOMContentLoaded", inicializarApp);
