@@ -182,17 +182,12 @@ EQUIPAMENTO EM COMODATO: ${dados.comodato}_____
     let temCTO = false;
     
     if (dados.ca1 && dados.ca1.trim() !== '') {
-        textoChamado += `\nCA 1: ${formatarCA(dados.ca1, dados.metragem1)}`;
+        textoChamado += `\nCTO 1: ${formatarCA(dados.ca1, dados.metragem1)}`;
         temCTO = true;
     }
     
     if (dados.ca2 && dados.ca2.trim() !== '') {
-        textoChamado += `\nCA 2: ${formatarCA(dados.ca2, dados.metragem2)}`;
-        temCTO = true;
-    }
-    
-    if (dados.ca3 && dados.ca3.trim() !== '') {
-        textoChamado += `\nCA 3: ${formatarCA(dados.ca3, dados.metragem3)}`;
+        textoChamado += `\nCTO 2: ${formatarCA(dados.ca2, dados.metragem2)}`;
         temCTO = true;
     }
     
@@ -250,7 +245,6 @@ function coletarDadosFormulario() {
 
         ca1: obterValorCampo('cto1'),
         ca2: obterValorCampo('cto2'),
-        ca3: obterValorCampo('cto3'),
 
         metragem1: obterValorCampo('metragem1'),
         metragem2: obterValorCampo('metragem2'),
