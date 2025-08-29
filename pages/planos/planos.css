@@ -78,6 +78,10 @@ nav ul li a:hover {
   transition: transform 0.2s;
 }
 
+.roku {
+  max-width: 600px;
+}
+
 .imagem:hover {
   transform: scale(1.015);
 }
