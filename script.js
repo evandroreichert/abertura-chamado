@@ -368,13 +368,11 @@ function inicializarWidgetDiario() {
         "A internet global consome mais energia que a Argentina inteira! ⚡",
         "Um cabo submarino de fibra óptica pode transmitir 99% da velocidade da luz! 🌊",
         "O Brasil tem mais de 600 mil km de fibra óptica instalada - dá 15 voltas na Terra! 🇧🇷🌎",
-        "1 minuto na internet = 500 horas de vídeos no YouTube enviados! 📹⏱️",
         "99% do tráfego de internet entre continentes passa por cabos submarinos! 🌊",
         "O primeiro email foi enviado em 1971 - antes do WhatsApp existir! 📧",
         "Uma única fibra óptica é mais fina que um fio de cabelo humano! 💇‍♀️",
         "O WiFi foi inventado por acidente enquanto estudavam buracos negros! 🕳️",
         "Google processa mais de 8,5 bilhões de pesquisas por dia! 🔍",
-        "A deep web é 500x maior que a internet que conhecemos! 🕵️‍♂️",
         "Streaming de vídeo representa 60% de todo tráfego de internet! 🎬",
         "O ping para a Lua seria de 2,6 segundos (se tivesse WiFi lá)! 🌙",
         "Existem mais dispositivos conectados que pessoas no mundo! 📱",
@@ -382,7 +380,6 @@ function inicializarWidgetDiario() {
         "A palavra 'spam' vem de uma marca de presunto enlatado! 🥫",
         "5,5 bilhões de pessoas usam internet - 68% da população mundial! 🌐",
         "241 milhões de novas pessoas entraram nas redes sociais em 2024! 📲",
-        "96% dos adultos americanos usam internet - quase universal! 🇺🇸",
         "Fibra óptica é 10-20x mais rápida que cabos de 100MB tradicionais! ⚡",
         "Mais de 5 bilhões de km de fibra óptica já foram instalados no mundo! 🌍",
         "O cabo 2Africa tem 45.000km - conecta 3 continentes e 33 países! 🌍",
@@ -400,8 +397,6 @@ function inicializarWidgetDiario() {
         "DWDM permite múltiplos canais em uma única fibra! 📡",
         "Óptica quântica vai revolucionar comunicações seguras! 🔐",
         "EUA dominam 87,4% do mercado norte-americano de fibra! 🇺🇸📊",
-        "Fibras flexíveis dobram sem perder sinal - perfeitas para medicina! 🏥🤸",
-        "13 milhões de americanos ficaram online entre 2021-2023! 📈🇺",
         "Cabos de fibra suportam até 200 libras de tensão com kevlar! 💪",
         "Drones de fibra óptica são imunes a guerra eletrônica! 🛸",
         "Bell Labs bateu recorde: 100 petabit × km/s de transmissão! 🏆",
@@ -413,9 +408,7 @@ function inicializarWidgetDiario() {
         "Holanda, Noruega e Arábia Saudita têm 99% de penetração de internet! 🏆",
         "Cabo submarino pode durar 25 anos no fundo do oceano! 🌊",
         "Um único cabo de fibra pode carregar 10 terabits por segundo! 💾",
-        "6G já está sendo planejado e vai precisar de ainda mais fibra! 📡",
-        "Fibra óptica médica permite cirurgias menos invasivas! 🏥",
-        "Cabos submarinos enfrentam tubarões que mordem pensando ser comida! 🦈"
+        "Cabos submarinos de internet enfrentam tubarões que mordem pensando ser comida! 🦈"
     ];
 
     const dataDiaria = new Date();
