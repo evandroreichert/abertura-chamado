@@ -499,7 +499,7 @@ input:checked + .slider:before {
 
 .widget-content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   position: relative;
 }
@@ -522,6 +522,7 @@ input:checked + .slider:before {
   font-size: 1.8rem;
   animation: mindBlown 4s ease-in-out infinite;
   flex-shrink: 0;
+  margin-top: -2px;
 }
 
 @media (max-width: 768px) {
@@ -618,6 +619,7 @@ input:checked + .slider:before {
   border: 1px solid rgba(66, 153, 225, 0.25);
   font-weight: 500;
   flex-shrink: 0;
+  margin-top: 2px;
 }
 
 @media (max-width: 768px) {
