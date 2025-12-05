@@ -45,10 +45,6 @@ function obterValorRadio(name, uppercase = true) {
     return uppercase ? textoSemAcentos.toUpperCase() : textoSemAcentos;
 }
 
-function formatarCA(ca, metragem) {
-    if (!ca) return '';
-    return `${ca}${metragem ? ` - ${metragem}M` : ''}`;
-}
 
 function valorOuPadrao(valor, padrao = 'CONFIGURAR NO LOCAL') {
     return valor || padrao;
@@ -68,12 +64,6 @@ function adicionarInputFTTA() {
     let containerCaixaFTTA = document.getElementById('container-caixa-ftta');
     let containerFTTA = document.getElementById('container-ftta');
 
-    const ctoInputIds = ['cto1', 'metragem1', 'cto2', 'metragem2', 'cto3', 'metragem3'];
-    
-    const ctoContainers = ctoInputIds.map(id => {
-        const input = document.getElementById(id);
-        return input ? input.closest('.form-group') : null;
-    }).filter(container => container !== null);
 
     // Controlar visibilidade do campo Fidelidade
     const fidelidadeContainer = document.querySelector('input[name="fidelidade"]')?.closest('.form-group');
@@ -94,10 +84,6 @@ function adicionarInputFTTA() {
     const isInstalacaoFTTA = tipoProcesso.includes('FTTA') && tipoProcesso.includes('Instalação');
 
     if (isTrocaFTTA) {
-        ctoContainers.forEach(container => {
-            container.style.display = 'none';
-        });
-
         if (containerFTTA) {
             containerFTTA.remove();
         }
@@ -115,12 +101,8 @@ function adicionarInputFTTA() {
                 descricaoParent.parentNode.insertBefore(novoContainer, descricaoParent);
             }
         }
-    } 
+    }
     else if (isInstalacaoFTTA) {
-        ctoContainers.forEach(container => {
-            container.style.display = 'block';
-        });
-
         if (containerCaixaFTTA) {
             containerCaixaFTTA.remove();
         }
@@ -138,12 +120,8 @@ function adicionarInputFTTA() {
                 descricaoParent.parentNode.insertBefore(novoContainer, descricaoParent);
             }
         }
-    } 
+    }
     else {
-        ctoContainers.forEach(container => {
-            container.style.display = 'block';
-        });
-
         if (containerCaixaFTTA) {
             containerCaixaFTTA.remove();
         }
@@ -179,23 +157,9 @@ TIPO DE PROCESSO: ${dados.processo}_____
 EQUIPAMENTO EM COMODATO: ${dados.comodato}_____
 `;
 
-    let temCTO = false;
-    
-    if (dados.ca1 && dados.ca1.trim() !== '') {
-        textoChamado += `\nCTO 1: ${formatarCA(dados.ca1, dados.metragem1)}`;
-        temCTO = true;
-    }
-    
-    if (dados.ca2 && dados.ca2.trim() !== '') {
-        textoChamado += `\nCTO 2: ${formatarCA(dados.ca2, dados.metragem2)}`;
-        temCTO = true;
-    }
-    
-    if (!temCTO) {
-        const caixaFtta = obterValorCampo('caixa_ftta');
-        if (caixaFtta && caixaFtta.trim() !== '') {
-            textoChamado += `\nCAIXA FTTA: ${caixaFtta}`;
-        }
+    const caixaFtta = obterValorCampo('caixa_ftta');
+    if (caixaFtta && caixaFtta.trim() !== '') {
+        textoChamado += `\nCAIXA FTTA: ${caixaFtta}`;
     }
 
     textoChamado += `
@@ -243,13 +207,6 @@ function coletarDadosFormulario() {
         login: obterValorCampo('login'),
         senha: obterValorCampo('senha', false),
 
-        ca1: obterValorCampo('cto1'),
-        ca2: obterValorCampo('cto2'),
-
-        metragem1: obterValorCampo('metragem1'),
-        metragem2: obterValorCampo('metragem2'),
-        metragem3: obterValorCampo('metragem3'),
-        
         caixa_ftta: obterValorCampo('caixa_ftta', false),
 
         id: obterValorCampo('id'),
